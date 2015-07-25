@@ -17,7 +17,7 @@ int main()
   {
     //glfwWindowHint(GLFW_DOUBLEBUFFER, GL_FALSE);
     glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
-    //glfwWindowHint(GLFW_SAMPLES, 4); 
+    //glfwWindowHint(GLFW_SAMPLES, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -41,7 +41,7 @@ int main()
         GLuint vertexArrayId;
         glGenVertexArrays(1, &vertexArrayId);       assert(!glGetError());
         glBindVertexArray(vertexArrayId);           assert(!glGetError());
-//        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  assert(!glGetError());
+        //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);  assert(!glGetError());
         glEnable(GL_CULL_FACE);                     assert(!glGetError());
         glCullFace(GL_FRONT);                       assert(!glGetError());
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f);

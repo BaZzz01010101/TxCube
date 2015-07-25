@@ -1,7 +1,7 @@
 #include "TxCube.h"
-//#define USE_STRIPES
+#define USE_STRIPES
 
-TxCube::TxCube(GLfloat size) : 
+TxCube::TxCube(GLfloat size) :
   GxObject()
 {
   const GLfloat a = size * 0.5f;
@@ -70,16 +70,16 @@ TxCube::TxCube(GLfloat size) :
     4, 6, 5,
     5,6,7,
     // front
-    8, 9, 10, 
+    8, 9, 10,
     10,9,11,
     // back
-    12, 14, 13, 
+    12, 14, 13,
     13,14,15,
     // top
-    16, 17, 18, 
+    16, 17, 18,
     18,17,19,
     // bottom
-    20, 22, 21, 
+    20, 22, 21,
     21,22,23
   };
 #endif
@@ -127,7 +127,7 @@ TxCube::TxCube(GLfloat size) :
   glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);                                          assert(!glGetError());
   glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);  assert(!glGetError());
 
-  texture.loadFromFile((Crosy::getExePath() + "\\textures\\rubik.DDS").c_str());
+  texture.loadFromFile((Crosy::getExePath() + "/textures/rubik.DDS").c_str());
   assert(texture.id);
 }
 
@@ -150,9 +150,9 @@ void TxCube::draw()
 //  for (int n = 0; n < 100000; n++)
   {
 #ifdef USE_STRIPES
-    for (int i = 0; i < 24 * sizeof(GLshort); i += 4 * sizeof(GLshort))
+    for (GLshort * ptr = 0; ptr < (GLshort *)0 + 24; ptr += 4)
     {
-      glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, (void*)i);
+      glDrawElements(GL_TRIANGLE_STRIP, 4, GL_UNSIGNED_SHORT, (void*)ptr);
       assert(!glGetError());
     }
 //    glDrawElements(GL_TRIANGLE_STRIP, 24, GL_UNSIGNED_SHORT, (void*)0);

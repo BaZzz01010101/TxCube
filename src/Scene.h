@@ -8,8 +8,8 @@ class Scene
 private:
   typedef std::vector<GxObject*> SCENE_OBJECTS;
   SCENE_OBJECTS objects;
-  mat4 view;
-  mat4 projection;
+  glm::mat4 view;
+  glm::mat4 projection;
   Program prog;
 
 public:

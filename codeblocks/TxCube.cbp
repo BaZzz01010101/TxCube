@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="TxCube" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="../build/TxCube" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="/usr/include/" />
+					<Add directory="../src/3rdParty" />
+				</Compiler>
+				<Linker>
+					<Add library="glfw3" />
+					<Add library="GLU" />
+					<Add library="X11" />
+					<Add library="Xxf86vm" />
+					<Add library="pthread" />
+					<Add library="libGLEW" />
+					<Add library="Xrandr" />
+					<Add library="Xi" />
+					<Add library="Xcursor" />
+					<Add library="Xinerama" />
+					<Add library="GL" />
+					<Add directory="/user/lib/x86_64-linux-gnu/" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="../build/TxCube" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-fexpensive-optimizations" />
+					<Add option="-O3" />
+					<Add option="-DNDEBUG" />
+					<Add directory="../src/3rdParty" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="glfw3" />
+					<Add library="GLU" />
+					<Add library="X11" />
+					<Add library="Xxf86vm" />
+					<Add library="pthread" />
+					<Add library="libGLEW" />
+					<Add library="Xrandr" />
+					<Add library="Xi" />
+					<Add library="Xcursor" />
+					<Add library="Xinerama" />
+					<Add library="GL" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../src/3rdParty/SOIL2/SOIL2.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/3rdParty/SOIL2/SOIL2.h" />
+		<Unit filename="../src/3rdParty/SOIL2/etc1_utils.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/3rdParty/SOIL2/etc1_utils.h" />
+		<Unit filename="../src/3rdParty/SOIL2/image_DXT.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/3rdParty/SOIL2/image_DXT.h" />
+		<Unit filename="../src/3rdParty/SOIL2/image_helper.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../src/3rdParty/SOIL2/image_helper.h" />
+		<Unit filename="../src/3rdParty/SOIL2/pkm_helper.h" />
+		<Unit filename="../src/3rdParty/SOIL2/pvr_helper.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stb_image.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stb_image_write.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_DDS.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_DDS_c.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_ext.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_ext_c.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_pkm.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_pkm_c.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_pvr.h" />
+		<Unit filename="../src/3rdParty/SOIL2/stbi_pvr_c.h" />
+		<Unit filename="../src/Camera.cpp" />
+		<Unit filename="../src/Camera.h" />
+		<Unit filename="../src/Crosy.cpp" />
+		<Unit filename="../src/Crosy.h" />
+		<Unit filename="../src/GxObject.cpp" />
+		<Unit filename="../src/GxObject.h" />
+		<Unit filename="../src/Main.cpp" />
+		<Unit filename="../src/Program.cpp" />
+		<Unit filename="../src/Program.h" />
+		<Unit filename="../src/Scene.cpp" />
+		<Unit filename="../src/Scene.h" />
+		<Unit filename="../src/Shader.cpp" />
+		<Unit filename="../src/Shader.h" />
+		<Unit filename="../src/Texture.cpp" />
+		<Unit filename="../src/Texture.h" />
+		<Unit filename="../src/TxCube.cpp" />
+		<Unit filename="../src/TxCube.h" />
+		<Unit filename="../src/glall.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

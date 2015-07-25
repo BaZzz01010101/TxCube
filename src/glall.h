@@ -2,9 +2,10 @@
 #include "Crosy.h"
 #include <assert.h>
 #include <vector>
-#include <gl/glew.h>
-#include <gl/glfw3.h>
+#include <stdio.h>
+#include <GL/glew.h>
+#include <GL/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include "soil2/soil2.h"
-using namespace glm;
+#include "SOIL2/SOIL2.h"
+//using namespace glm;

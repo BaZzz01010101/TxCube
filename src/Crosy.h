@@ -10,6 +10,7 @@
 #include <vector>
 #include <limits.h>
 #include <stdint.h>
+#include <string>
 #include <string.h>
 
 namespace Crosy

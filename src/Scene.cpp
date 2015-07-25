@@ -4,13 +4,13 @@
 
 
 Scene::Scene() :
-  view(glm::lookAt(vec3(0, 0, 5), vec3(0, 0, 0), vec3(0, 1, 0))),
+  view(glm::lookAt(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0))),
   projection(glm::perspective(45.0f, 16.0f / 10.0f, 0.1f, 100.0f))
 {
   objects.push_back(new TxCube(1.0f));
-  objects.back()->mat = glm::translate(objects.back()->mat, vec3(2, 0, 0));
+  objects.back()->mat = glm::translate(objects.back()->mat, glm::vec3(2, 0, 0));
   objects.push_back(new TxCube(2.0f));
-  objects.back()->mat = glm::translate(objects.back()->mat, vec3(-1, 0, 0));
+  objects.back()->mat = glm::translate(objects.back()->mat, glm::vec3(-1, 0, 0));
 
   const char * vertShadeStr =
     "#version 330 core\n"
@@ -68,9 +68,9 @@ void Scene::draw()
   {
     GxObject * obj = *it;
 
-    mat4 m = glm::rotate(obj->mat, ax, vec3(-1, 0, 0));
-    m = glm::rotate(m, ay, vec3(0, 1, 0));
-    m = glm::rotate(m, az, vec3(0, 0, 1));
+    glm::mat4 m = glm::rotate(obj->mat, ax, glm::vec3(-1, 0, 0));
+    m = glm::rotate(m, ay, glm::vec3(0, 1, 0));
+    m = glm::rotate(m, az, glm::vec3(0, 0, 1));
 
     GLuint matID = glGetUniformLocation(prog.getId(), "mvp");                 assert(!glGetError());
     glUniformMatrix4fv(matID, 1, GL_FALSE, &(projection * view * m)[0][0]);   assert(!glGetError());
