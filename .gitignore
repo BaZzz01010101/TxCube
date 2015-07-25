@@ -152,7 +152,6 @@ $RECYCLE.BIN/
 .DS_Store
 
 #Project specific
-textures/
 build/*.bmp
 cmake/
 *.7z
