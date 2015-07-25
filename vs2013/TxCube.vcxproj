@@ -223,7 +223,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
       <AdditionalIncludeDirectories>..\src\3rdParty\</AdditionalIncludeDirectories>
