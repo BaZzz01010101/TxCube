@@ -4,9 +4,12 @@
 class Texture
 {
 private:
-  GLuint textureId;
 public:
-  Texture(const char * fileName);
+  GLuint id;
+
+  Texture();
   ~Texture();
+
+  bool loadFromFile(const char * fileName);
 };
 

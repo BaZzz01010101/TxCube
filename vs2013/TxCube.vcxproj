@@ -19,52 +19,84 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\3rdParty\SOIL2\etc1_utils.c">
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4996</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">CompileAsCpp</CompileAs>
+      <CompileAs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">CompileAsCpp</CompileAs>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4996</DisableSpecificWarnings>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\image_DXT.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4996</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4996</DisableSpecificWarnings>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\image_helper.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4996</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4996</DisableSpecificWarnings>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\SOIL2.c">
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4996</DisableSpecificWarnings>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Level3</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Level3</WarningLevel>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4996</DisableSpecificWarnings>
+      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4996</DisableSpecificWarnings>
+    </ClCompile>
     <ClCompile Include="..\src\Camera.cpp" />
+    <ClCompile Include="..\src\Crosy.cpp" />
     <ClCompile Include="..\src\GxObject.cpp" />
     <ClCompile Include="..\src\Main.cpp" />
     <ClCompile Include="..\src\Program.cpp" />
     <ClCompile Include="..\src\Scene.cpp" />
     <ClCompile Include="..\src\Shader.cpp" />
-    <ClCompile Include="..\src\soil\image_DXT.c">
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\image_helper.c">
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\SOIL.c">
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\stb_image_aug.c">
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-      <DisableSpecificWarnings Condition="'$(Configuration)|$(Platform)'=='Release|x64'">4201;4244;4996;4100;4127;4018;4204;4389</DisableSpecificWarnings>
-    </ClCompile>
     <ClCompile Include="..\src\Texture.cpp" />
     <ClCompile Include="..\src\TxCube.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\3rdParty\SOIL2\etc1_utils.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\image_DXT.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\image_helper.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\pkm_helper.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\pvr_helper.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\SOIL2.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_DDS.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_DDS_c.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_ext.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_ext_c.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pkm.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pkm_c.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pvr.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pvr_c.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stb_image.h" />
+    <ClInclude Include="..\src\3rdParty\SOIL2\stb_image_write.h" />
     <ClInclude Include="..\src\Camera.h" />
+    <ClInclude Include="..\src\Crosy.h" />
     <ClInclude Include="..\src\glall.h" />
     <ClInclude Include="..\src\GxObject.h" />
     <ClInclude Include="..\src\Program.h" />
     <ClInclude Include="..\src\Scene.h" />
     <ClInclude Include="..\src\Shader.h" />
-    <ClInclude Include="..\src\soil\image_DXT.h" />
-    <ClInclude Include="..\src\soil\image_helper.h" />
-    <ClInclude Include="..\src\soil\SOIL.h" />
-    <ClInclude Include="..\src\soil\stbi_DDS_aug.h" />
-    <ClInclude Include="..\src\soil\stbi_DDS_aug_c.h" />
-    <ClInclude Include="..\src\soil\stb_image_aug.h" />
     <ClInclude Include="..\src\Texture.h" />
     <ClInclude Include="..\src\TxCube.h" />
   </ItemGroup>
@@ -138,7 +170,8 @@
       <WarningLevel>Level4</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4201;4996</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>..\src\3rdParty\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -154,6 +187,7 @@
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>..\src\3rdParty\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -170,6 +204,7 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>..\src\3rdParty\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -191,6 +226,7 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
       <DisableSpecificWarnings>4201</DisableSpecificWarnings>
+      <AdditionalIncludeDirectories>..\src\3rdParty\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -4,7 +4,7 @@ Program::Program() :
   errMsg(1, '\0')
 {
   id = 0;
-  _isError = false;
+  errorFlagged = false;
 }
 
 Program::~Program()
@@ -22,9 +22,10 @@ Program::~Program()
 
 void Program::setErrMsg(const char * str)
 {
-  int len = strlen(str);
+  size_t len = strlen(str);
   errMsg.resize(len + 1);
   strncpy(&errMsg.front(), str, errMsg.size());
+  errMsg[len] = '\0';
 }
 
 bool Program::checkGlErrors()
@@ -43,8 +44,8 @@ bool Program::checkGlErrors()
   else
     setErrMsg("");
 
-  _isError = errCode != 0;
-  return _isError;
+  errorFlagged = errCode != 0;
+  return errorFlagged;
 }
 
 bool Program::attachShader(const Shader & shader)
@@ -98,11 +99,11 @@ bool Program::link()
 
     checkGlErrors();
 
-    _isError = true;
+    errorFlagged = true;
     return false;
   }
 
-  _isError = false;
+  errorFlagged = false;
   return true;
 }
 

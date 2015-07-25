@@ -11,11 +11,17 @@
       <Extensions>
       </Extensions>
     </Filter>
-    <Filter Include="Headers\SOIL">
-      <UniqueIdentifier>{ceb323c4-bfc3-4549-8291-a56add77917c}</UniqueIdentifier>
+    <Filter Include="Headers\3rdParty">
+      <UniqueIdentifier>{412c7c3e-163e-4750-89b4-74c4f505381c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\SOIL">
+    <Filter Include="Sources\3rdParty">
+      <UniqueIdentifier>{f6c01fd6-ed55-4028-9bf0-a8f34be21036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sources\3rdParty\SOIL2">
       <UniqueIdentifier>{8a9bb703-09b7-428e-be60-64dc9b96aa4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headers\3rdParty\SOIL2">
+      <UniqueIdentifier>{ceb323c4-bfc3-4549-8291-a56add77917c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,22 +43,25 @@
     <ClCompile Include="..\src\Texture.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\soil\SOIL.c">
-      <Filter>Sources\SOIL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\image_DXT.c">
-      <Filter>Sources\SOIL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\image_helper.c">
-      <Filter>Sources\SOIL</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\soil\stb_image_aug.c">
-      <Filter>Sources\SOIL</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Program.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
     <ClCompile Include="..\src\Shader.cpp">
+      <Filter>Sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\etc1_utils.c">
+      <Filter>Sources\3rdParty\SOIL2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\image_DXT.c">
+      <Filter>Sources\3rdParty\SOIL2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\image_helper.c">
+      <Filter>Sources\3rdParty\SOIL2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\3rdParty\SOIL2\SOIL2.c">
+      <Filter>Sources\3rdParty\SOIL2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Crosy.cpp">
       <Filter>Sources</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,28 +84,61 @@
     <ClInclude Include="..\src\Texture.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\soil\SOIL.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\soil\image_DXT.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\soil\image_helper.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\soil\stb_image_aug.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\soil\stbi_DDS_aug.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\soil\stbi_DDS_aug_c.h">
-      <Filter>Headers\SOIL</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\Program.h">
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Shader.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\etc1_utils.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\image_DXT.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\image_helper.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\pkm_helper.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\pvr_helper.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\SOIL2.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stb_image.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stb_image_write.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_DDS.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_DDS_c.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_ext.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_ext_c.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pkm.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pkm_c.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pvr.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\3rdParty\SOIL2\stbi_pvr_c.h">
+      <Filter>Headers\3rdParty\SOIL2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Crosy.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

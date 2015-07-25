@@ -15,19 +15,24 @@ Scene::Scene() :
   const char * vertShadeStr =
     "#version 330 core\n"
     "layout(location = 0) in vec3 vertexPosition_modelspace;\n"
+    "layout(location = 1) in vec2 vertexUV;\n"
+    "out vec2 uv;\n"
     "uniform mat4 mvp;\n"
     "void main()\n"
     "{\n"
     "  vec4 v = vec4(vertexPosition_modelspace, 1);\n"
     "  gl_Position = mvp * v;\n"
+    "  uv = vertexUV;\n"
     "}\n";
 
   const char * fragShadeStr =
     "#version 330 core\n"
+    "in vec2 uv;\n"
     "out vec3 color;\n"
+    "uniform sampler2D mytexture;\n"
     "void main()\n"
     "{\n"
-    "  color = vec3(1, 0, 0);\n"
+    "  color = texture(mytexture, uv).rgb;\n"//vec3(1, 0, 0);\n"
     "}\n";
 
   Shader vertShade(GL_VERTEX_SHADER);
@@ -76,5 +81,8 @@ void Scene::draw()
 
 void Scene::setViewport(int width, int height)
 {
-  projection = glm::perspective(45.0f, float(width) / height, 0.1f, 100.0f);
+  if (height)
+    projection = glm::perspective(45.0f, float(width) / height, 0.1f, 100.0f);
+  else
+    projection = glm::perspective(45.0f, 1.0f, 0.1f, 100.0f);
 }

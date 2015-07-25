@@ -5,7 +5,7 @@ Shader::Shader(GLenum type)
 {
   this->type = type;
   id = 0;
-  _isError = false;
+  errorFlagged = false;
 }
 
 
@@ -16,9 +16,10 @@ Shader::~Shader()
 
 void Shader::setErrMsg(const char * str)
 {
-  int len = strlen(str);
+  size_t len = strlen(str);
   errMsg.resize(len + 1);
   strncpy(&errMsg.front(), str, errMsg.size());
+  errMsg[len] = '\0';
 }
 
 bool Shader::checkGlErrors()
@@ -37,8 +38,8 @@ bool Shader::checkGlErrors()
   else
     setErrMsg("");
 
-  _isError = errCode != 0;
-  return _isError;
+  errorFlagged = errCode != 0;
+  return errorFlagged;
 }
 
 bool Shader::compileFromString(const char * source)
@@ -82,16 +83,16 @@ bool Shader::compileFromString(const char * source)
 
     checkGlErrors();
 
-    _isError = true;
+    errorFlagged = true;
     return false;
   }
 
-  _isError = false;
+  errorFlagged = false;
   return true;
 }
 
 bool Shader::compileFromFile(const char * filename)
 {
-  _isError = true;
+  errorFlagged = true;
   return false;
 }
