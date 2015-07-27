@@ -142,4 +142,7 @@
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.md" />
+  </ItemGroup>
 </Project>

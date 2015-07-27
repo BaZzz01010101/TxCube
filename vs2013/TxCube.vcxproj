@@ -100,6 +100,9 @@
     <ClInclude Include="..\src\Texture.h" />
     <ClInclude Include="..\src\TxCube.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ReadMe.md" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{39462F9D-F716-43C6-A07D-17A8E38EE1C5}</ProjectGuid>
     <RootNamespace>Project1</RootNamespace>
