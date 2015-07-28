@@ -1,10 +1,16 @@
 #ifdef _WIN32
-#include <windows.h>
-#endif
 
-#ifdef __linux__
+#include <windows.h>
+
+#elif __linux__
+
 #include <X11/Xlib.h>
 #include <unistd.h>
+
+#else
+
+#error unknown platform
+
 #endif
 
 #include <vector>

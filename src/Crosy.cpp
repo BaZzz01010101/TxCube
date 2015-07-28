@@ -4,6 +4,7 @@ std::string Crosy::getExePath()
 {
 
 #ifdef _WIN32
+
   std::string exePath = "./";
   char exeFullPathName[MAX_PATH + 1];
 
@@ -19,9 +20,9 @@ std::string Crosy::getExePath()
   }
 
   return exePath;
-#endif
 
-#ifdef __linux__
+#elif __linux__
+
   std::string exePath = "./";
   char exeFullPathName[PATH_MAX + 1];
   int pathLen = readlink("/proc/self/exe", exeFullPathName, PATH_MAX);
@@ -39,65 +40,84 @@ std::string Crosy::getExePath()
   }
 
   return exePath;
+
+#else
+  #error unknown platform
 #endif
 }
 
 uint64_t Crosy::getPerformanceCounter()
 {
 #ifdef _WIN32
+
   LARGE_INTEGER counter = { 0, 0 };
   QueryPerformanceCounter(&counter);
 
   return counter.QuadPart;
-#endif
 
-#ifdef __linux__
+#elif __linux__
+
   timespec ts = { 0, 0 };
   clock_gettime(CLOCK_MONOTONIC, &ts);
 
   return uint64_t(ts.tv_sec) * 1000000000 + uint64_t(ts.tv_nsec);
+
+#else
+#error unknown platform
 #endif
 }
 
 uint64_t Crosy::getPerformanceFrequency()
 {
 #ifdef _WIN32
+
   LARGE_INTEGER perfFreq = { 0, 0 };
   QueryPerformanceFrequency(&perfFreq);
 
   return perfFreq.QuadPart;
-#endif
 
-#ifdef __linux__
+#elif __linux__
+
   return 1000000000;
+
+#else
+#error unknown platform
 #endif
 }
 
 uint64_t Crosy::getSystemTime()
 {
 #ifdef _WIN32
+
   FILETIME ft;
   GetSystemTimeAsFileTime(&ft);
 
   return ((uint64_t)(ft.dwHighDateTime)) << 32 | ((uint64_t)(ft.dwLowDateTime));
-#endif
 
-#ifdef __linux__
+#elif __linux__
+
   timespec ts = { 0, 0 };
   clock_gettime(CLOCK_REALTIME, &ts);
 
   return ((uint64_t)(ts.tv_sec) + 11644473600LL) * 100000000 + (uint64_t)(ts.tv_nsec) / 10;
 //  return (uint64_t)(ts.tv_sec) * 1000000000 + (uint64_t)(ts.tv_nsec);
+
+#else
+#error unknown platform
 #endif
 }
 
 void Crosy::sleep(unsigned int ms)
 {
 #ifdef _WIN32
-  Sleep(ms);
-#endif
 
-#ifdef __linux__
+  Sleep(ms);
+
+#elif __linux__
+
   usleep(ms * 1000);
+
+#else
+#error unknown platform
 #endif
 }
