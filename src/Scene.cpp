@@ -4,7 +4,9 @@
 
 
 Scene::Scene() :
-  view(glm::lookAt(glm::vec3(0, 0, 5), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0))),
+  eye(0, 0, 5),
+  at(0, 0, 0),
+  view(glm::lookAt(eye, at, glm::vec3(0, 1, 0))),
   projection(glm::perspective(45.0f, 16.0f / 10.0f, 0.1f, 100.0f))
 {
   objects.push_back(new TxCube(1.0f));
@@ -14,25 +16,42 @@ Scene::Scene() :
 
   const char * vertShadeStr =
     "#version 330 core\n"
-    "layout(location = 0) in vec3 vertexPosition_modelspace;\n"
+    "layout(location = 0) in vec3 vertexPos;\n"
     "layout(location = 1) in vec2 vertexUV;\n"
-    "out vec2 uv;\n"
+    "layout(location = 2) in vec3 vertexNorm;\n"
     "uniform mat4 mvp;\n"
+    "uniform mat4 mv;\n"
+    "out vec3 pos;\n"
+    "out vec2 uv;\n"
+    "out vec3 norm;\n"
+    "out float ltPower;\n"
+    "const vec3 ltDir = normalize(vec3(5, 0, -3));\n"
+
     "void main()\n"
     "{\n"
-    "  vec4 v = vec4(vertexPosition_modelspace, 1);\n"
-    "  gl_Position = mvp * v;\n"
+    "  gl_Position = mvp * vec4(vertexPos, 1);\n"
     "  uv = vertexUV;\n"
+    "  pos = vec3(mv * vec4(vertexPos, 1));\n"
+    "  norm = normalize(vec3(mat3(mv) * vertexNorm));\n"
+    "  ltPower = 0.1 + 0.9 * clamp(dot(ltDir, -norm), 0, 1);\n"
     "}\n";
 
   const char * fragShadeStr =
     "#version 330 core\n"
-    "in vec2 uv;\n"
-    "out vec3 color;\n"
     "uniform sampler2D mytexture;\n"
+    "uniform vec3 eye;\n"
+    "in vec2 uv;\n"
+    "in vec3 pos;\n"
+    "in vec3 norm;\n"
+    "in float ltPower;\n"
+    "const vec3 ltDir = normalize(vec3(5, 0, -3));\n"
+    "out vec3 color;\n"
+
     "void main()\n"
     "{\n"
-    "  color = texture(mytexture, uv).rgb;\n"//vec3(1, 0, 0);\n"
+    "  vec3 refl = reflect(normalize(pos - eye), norm);\n"
+    "  float specPower = clamp(dot(refl, -ltDir), 0, 1);\n"
+    "  color = pow(specPower, 16) + ltPower * texture(mytexture, uv).rgb;\n"
     "}\n";
 
   Shader vertShade(GL_VERTEX_SHADER);
@@ -60,9 +79,12 @@ void Scene::draw()
   static float ay = 0;
   static float az = 0;
 
-  ax += 0.057f;
-  ay += 0.037f;
-  az += 0.017f;
+  ax += 0.0087f;
+  ay += 0.0057f;
+  az += 0.0037f;
+
+  GLuint eyeId = glGetUniformLocation(prog.getId(), "eye");   assert(!glGetError());
+  glUniform3fv(eyeId, 1, &eye[0]);                               assert(!glGetError());
 
   for (SCENE_OBJECTS::iterator it = objects.begin(); it != objects.end(); ++it)
   {
@@ -72,8 +94,11 @@ void Scene::draw()
     m = glm::rotate(m, ay, glm::vec3(0, 1, 0));
     m = glm::rotate(m, az, glm::vec3(0, 0, 1));
 
-    GLuint matID = glGetUniformLocation(prog.getId(), "mvp");                 assert(!glGetError());
-    glUniformMatrix4fv(matID, 1, GL_FALSE, &(projection * view * m)[0][0]);   assert(!glGetError());
+    GLuint mvpId = glGetUniformLocation(prog.getId(), "mv");                 assert(!glGetError());
+    glUniformMatrix4fv(mvpId, 1, GL_FALSE, &(view * m)[0][0]);   assert(!glGetError());
+
+    GLuint mvId = glGetUniformLocation(prog.getId(), "mvp");                 assert(!glGetError());
+    glUniformMatrix4fv(mvId, 1, GL_FALSE, &(projection * view * m)[0][0]);   assert(!glGetError());
 
     obj->draw();
   }

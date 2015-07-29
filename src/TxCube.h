@@ -7,8 +7,9 @@ class TxCube : public GxObject
 {
 private:
   Texture texture;
-  GLuint vbo;
+  GLuint vertexBufferId;
   GLuint uvBufferId;
+  GLuint normalBufferId;
   GLuint indexBufferId;
 
 public:

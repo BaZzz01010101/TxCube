@@ -4,6 +4,8 @@
 TxCube::TxCube(GLfloat size) :
   GxObject()
 {
+  texture.loadFromFile((Crosy::getExePath() + "/textures/rubik.DDS").c_str());
+  assert(texture.id);
   const GLfloat a = size * 0.5f;
 
   GLfloat vertexBufferData[24 * 3] =
@@ -40,9 +42,105 @@ TxCube::TxCube(GLfloat size) :
     a, -a, a,
   };
 
-  glGenBuffers(1, &vbo);                                                                      assert(!glGetError());
-  glBindBuffer(GL_ARRAY_BUFFER, vbo);                                                         assert(!glGetError());
-  glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);  assert(!glGetError());
+  glGenBuffers(1, &vertexBufferId);                                                               assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);                                                  assert(!glGetError());
+  glBufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);      assert(!glGetError());
+
+  GLfloat uvBufferData[24 * 2] =
+  {
+    // left face
+    0.0f,       0.0f,
+    1.0f / 3,   0.0f,
+    0.0f,       0.5f,
+    1.0f / 3,   0.5f,
+    // right face
+    0.0f,       0.5f,
+    1.0f / 3,   0.5f,
+    0.0f,       1.0f,
+    1.0f / 3,   1.0f,
+
+    // front face
+    1.0f / 3,   0.0f,
+    2.0f / 3,   0.0f,
+    1.0f / 3,   0.5f,
+    2.0f / 3,   0.5f,
+    // back face
+    1.0f / 3,   0.5f,
+    2.0f / 3,   0.5f,
+    1.0f / 3,   1.0f,
+    2.0f / 3,   1.0f,
+
+    // top face
+    2.0f / 3,   0.0f,
+    1.0f,       0.0f,
+    2.0f / 3,   0.5f,
+    1.0f,       0.5f,
+    // bottom face
+    2.0f / 3,   0.5f,
+    1.0f,       0.5f,
+    2.0f / 3,   1.0f,
+    1.0f,       1.0f,
+  };
+
+  glGenBuffers(1, &uvBufferId);                                                       assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);                                          assert(!glGetError());
+  glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);  assert(!glGetError());
+
+  GLfloat normalBufferData[24 * 3] = 
+  {
+    // left face
+    -1, 0, 0,
+    -1, 0, 0,
+    -1, 0, 0,
+    -1, 0, 0,
+    // right face
+    1, 0, 0,
+    1, 0, 0,
+    1, 0, 0,
+    1, 0, 0,
+    // front face
+    0, 0, -1,
+    0, 0, -1,
+    0, 0, -1,
+    0, 0, -1,
+    // back face
+    0, 0, 1,
+    0, 0, 1,
+    0, 0, 1,
+    0, 0, 1,
+    // top face
+    0, 1, 0,
+    0, 1, 0,
+    0, 1, 0,
+    0, 1, 0,
+    // bottom face
+    0, -1, 0,
+    0, -1, 0,
+    0, -1, 0,
+    0, -1, 0,
+  };
+
+  //for (int i = 0; i < 24 * 3; i += 4 * 3)
+  //{
+  //  GLfloat * pf = vertexBufferData + i;
+  //  glm::vec3 v0(*pf++, *pf++, *pf++);
+  //  glm::vec3 v1(*pf++, *pf++, *pf++);
+  //  glm::vec3 v2(*pf++, *pf++, *pf++);
+  //  glm::vec3 norm = glm::normalize(glm::cross(v1 - v0, v2 - v0));
+
+  //  pf = normalBufferData + i;
+
+  //  for (int i = 0; i < 4; i++)
+  //  {
+  //    *pf++ = norm[0];
+  //    *pf++ = norm[1];
+  //    *pf++ = norm[2];
+  //  }
+  //}
+
+  glGenBuffers(1, &normalBufferId);                                                           assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, normalBufferId);                                              assert(!glGetError());
+  glBufferData(GL_ARRAY_BUFFER, sizeof(normalBufferData), normalBufferData, GL_STATIC_DRAW);  assert(!glGetError());
 
 #ifdef USE_STRIPES
   GLushort indexBufferData[24] =
@@ -86,49 +184,6 @@ TxCube::TxCube(GLfloat size) :
   glGenBuffers(1, &indexBufferId);                                                                  assert(!glGetError());
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferId);                                             assert(!glGetError());
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexBufferData), indexBufferData, GL_STATIC_DRAW);  assert(!glGetError());
-
-  GLfloat uvBufferData[24 * 2] =
-  {
-    // left face
-    0, 0,
-    0.333f, 0,
-    0, 0.5f,
-    0.333f, 0.5f,
-    // right face
-    0, 0.5f,
-    0.333f, 0.5f,
-    0, 1,
-    0.333f, 1,
-
-    // front face
-    0.333f, 0,
-    0.666f, 0,
-    0.333f, 0.5f,
-    0.666f, 0.5f,
-    // back face
-    0.333f, 0.5f,
-    0.666f, 0.5f,
-    0.333f, 1,
-    0.666f, 1,
-
-    // top face
-    0.666f, 0,
-    1, 0,
-    0.666f, 0.5f,
-    1, 0.5f,
-    // bottom face
-    0.666f, 0.5,
-    1, 0.5,
-    0.666f, 1,
-    1, 1,
-  };
-
-  glGenBuffers(1, &uvBufferId);                                                       assert(!glGetError());
-  glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);                                          assert(!glGetError());
-  glBufferData(GL_ARRAY_BUFFER, sizeof(uvBufferData), uvBufferData, GL_STATIC_DRAW);  assert(!glGetError());
-
-  texture.loadFromFile((Crosy::getExePath() + "/textures/rubik.DDS").c_str());
-  assert(texture.id);
 }
 
 
@@ -139,14 +194,19 @@ TxCube::~TxCube()
 void TxCube::draw()
 {
   glEnableVertexAttribArray(0);                                     assert(!glGetError());
-  glBindBuffer(GL_ARRAY_BUFFER, vbo);                               assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);                               assert(!glGetError());
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);     assert(!glGetError());
 
   glEnableVertexAttribArray(1);                                     assert(!glGetError());
   glBindBuffer(GL_ARRAY_BUFFER, uvBufferId);                        assert(!glGetError());
   glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, (void*)0);     assert(!glGetError());
 
+  glEnableVertexAttribArray(2);                                     assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, normalBufferId);                    assert(!glGetError());
+  glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);     assert(!glGetError());
+
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBufferId);             assert(!glGetError());
+
 //  for (int n = 0; n < 100000; n++)
   {
 #ifdef USE_STRIPES

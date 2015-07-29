@@ -8,6 +8,8 @@ class Scene
 private:
   typedef std::vector<GxObject*> SCENE_OBJECTS;
   SCENE_OBJECTS objects;
+  glm::vec3 eye;
+  glm::vec3 at;
   glm::mat4 view;
   glm::mat4 projection;
   Program prog;
