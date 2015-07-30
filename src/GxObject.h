@@ -1,11 +1,13 @@
 #pragma once
 #include "glall.h"
+#include "Texture.h" 
 
 class GxObject
 {
 protected:
 public:
   glm::mat4 mat;
+  Texture texture;
 
   GxObject();
   virtual ~GxObject();

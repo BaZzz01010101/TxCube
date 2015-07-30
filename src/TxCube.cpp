@@ -6,6 +6,7 @@ TxCube::TxCube(GLfloat size) :
 {
   texture.loadFromFile((Crosy::getExePath() + "/textures/rubik.DDS").c_str());
   assert(texture.id);
+
   const GLfloat a = size * 0.5f;
 
   GLfloat vertexBufferData[24 * 3] =
@@ -163,22 +164,22 @@ TxCube::TxCube(GLfloat size) :
   {
     // left
     0, 1, 2,
-    2,1,3,
+    2, 1, 3,
     // right
     4, 6, 5,
-    5,6,7,
+    5, 6, 7,
     // front
     8, 9, 10,
-    10,9,11,
+    10, 9, 11,
     // back
     12, 14, 13,
-    13,14,15,
+    13, 14, 15,
     // top
     16, 17, 18,
-    18,17,19,
+    18, 17, 19,
     // bottom
     20, 22, 21,
-    21,22,23
+    21, 22, 23
   };
 #endif
   glGenBuffers(1, &indexBufferId);                                                                  assert(!glGetError());
@@ -194,7 +195,7 @@ TxCube::~TxCube()
 void TxCube::draw()
 {
   glEnableVertexAttribArray(0);                                     assert(!glGetError());
-  glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);                               assert(!glGetError());
+  glBindBuffer(GL_ARRAY_BUFFER, vertexBufferId);                    assert(!glGetError());
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);     assert(!glGetError());
 
   glEnableVertexAttribArray(1);                                     assert(!glGetError());
@@ -222,4 +223,5 @@ void TxCube::draw()
   }
   glDisableVertexAttribArray(0);    assert(!glGetError());
   glDisableVertexAttribArray(1);    assert(!glGetError());
+  glDisableVertexAttribArray(2);    assert(!glGetError());
 }

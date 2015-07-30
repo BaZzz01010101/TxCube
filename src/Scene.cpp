@@ -62,6 +62,9 @@ Scene::Scene() :
   prog.attachShader(vertShade);                 assert(!prog.isError());
   prog.attachShader(fragShade);                 assert(!prog.isError());
   prog.link();                                  assert(!prog.isError());
+
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);         assert(!glGetError());
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);         assert(!glGetError());
 }
 
 Scene::~Scene()
@@ -84,7 +87,7 @@ void Scene::draw()
   az += 0.0037f;
 
   GLuint eyeId = glGetUniformLocation(prog.getId(), "eye");   assert(!glGetError());
-  glUniform3fv(eyeId, 1, &eye[0]);                               assert(!glGetError());
+  glUniform3fv(eyeId, 1, &eye[0]);                            assert(!glGetError());
 
   for (SCENE_OBJECTS::iterator it = objects.begin(); it != objects.end(); ++it)
   {
@@ -94,11 +97,14 @@ void Scene::draw()
     m = glm::rotate(m, ay, glm::vec3(0, 1, 0));
     m = glm::rotate(m, az, glm::vec3(0, 0, 1));
 
-    GLuint mvpId = glGetUniformLocation(prog.getId(), "mv");                 assert(!glGetError());
-    glUniformMatrix4fv(mvpId, 1, GL_FALSE, &(view * m)[0][0]);   assert(!glGetError());
+    GLuint mvpId = glGetUniformLocation(prog.getId(), "mv");                assert(!glGetError());
+    glUniformMatrix4fv(mvpId, 1, GL_FALSE, &(view * m)[0][0]);              assert(!glGetError());
 
-    GLuint mvId = glGetUniformLocation(prog.getId(), "mvp");                 assert(!glGetError());
-    glUniformMatrix4fv(mvId, 1, GL_FALSE, &(projection * view * m)[0][0]);   assert(!glGetError());
+    GLuint mvId = glGetUniformLocation(prog.getId(), "mvp");                assert(!glGetError());
+    glUniformMatrix4fv(mvId, 1, GL_FALSE, &(projection * view * m)[0][0]);  assert(!glGetError());
+
+    GLuint texId = glGetUniformLocation(prog.getId(), "mytexture");         assert(!glGetError());
+    glUniform1i(texId, 0);                                                  assert(!glGetError());
 
     obj->draw();
   }
