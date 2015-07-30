@@ -47,11 +47,23 @@ Scene::Scene() :
     "const vec3 ltDir = normalize(vec3(5, 0, -3));\n"
     "out vec3 color;\n"
 
+    "float rand(vec2 co) {\n"
+    "  return fract(sin(dot(co.xy, vec2(12.9898, 78.233))) * 43758.5453);\n"
+    "}\n"
+
     "void main()\n"
     "{\n"
     "  vec3 refl = reflect(normalize(pos - eye), norm);\n"
     "  float specPower = clamp(dot(refl, -ltDir), 0, 1);\n"
-    "  color = pow(specPower, 16) + ltPower * texture(mytexture, uv).rgb;\n"
+    "  color = texture(mytexture, uv).rgb;\n"
+    "  const float blackLimit = 0.2;\n"
+    "  if(color.r < blackLimit && color.g < blackLimit && color.b < blackLimit) {\n"
+    "    float rndf = rand(uv);\n"
+    "    color.x = rndf;\n"
+    "    color.y = rndf;\n"
+    "    color.z = rndf;\n"
+    "  } \n"
+    "    color = color * ltPower + pow(specPower, 16);\n"
     "}\n";
 
   Shader vertShade(GL_VERTEX_SHADER);
