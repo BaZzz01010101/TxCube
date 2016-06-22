@@ -1,6 +1,6 @@
 #TxCube
 
-TxCube is just another training program to become familiar with the basics of OpenGL.
+TxCube is just another training program to become familiar with the OpenGL basics.
 
 TxCube uses next libraries:
 * GLEW (http://glew.sourceforge.net/)
